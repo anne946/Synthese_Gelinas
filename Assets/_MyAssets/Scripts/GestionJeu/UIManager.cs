@@ -8,9 +8,7 @@ using TMPro;
 public class UIManager : MonoBehaviour  {
     
     [SerializeField] private int _score = default;
-    [SerializeField] private float _temps = default;
     [SerializeField] private TextMeshProUGUI _txtScore = default;
-    [SerializeField] private TextMeshProUGUI _txtTemps = default;
     [SerializeField] private GameObject _pausePanel = default;
     [SerializeField] private Image _livesDisplayImage = default;
     [SerializeField] private Sprite[] _liveSprites = default;
@@ -21,11 +19,9 @@ public class UIManager : MonoBehaviour  {
     public void Start() 
     {
         _score = 0;
-        _temps = Time.time;
-        ChangeLivesDisplayImage(3);
         Time.timeScale = 1;
+        ChangeLivesDisplayImage(3);
         UpdateScore();
-        UpdateTime();
     }
 
     public void Update()
@@ -41,6 +37,7 @@ public class UIManager : MonoBehaviour  {
             _pauseOn = false;
         }
     }
+    
     public void AjouterScore(int points) 
     {
         _score += points;
@@ -52,21 +49,14 @@ public class UIManager : MonoBehaviour  {
         _txtScore.text = "Score : " + _score.ToString();
     }
 
-    private void UpdateTime()
-    {
-        _txtTemps.text = "Temps: " + _temps.ToString();
-    }
-
     public void ChangeLivesDisplayImage(int noImage) {
         if (noImage < 0) {
             noImage = 0;
         }
         _livesDisplayImage.sprite = _liveSprites[noImage];
         
-        // Si le joueur n'a plus de vie on lance la séquence de fin de partie
         if (noImage == 0) {
             PlayerPrefs.SetInt("Score", _score);
-            PlayerPrefs.SetFloat("Temps", _temps);
             PlayerPrefs.Save();
             StartCoroutine("FinPartie");
         }

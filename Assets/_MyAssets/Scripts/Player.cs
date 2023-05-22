@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private float _canFire = -1f;
     private float _cadenceInitiale;
-    
+
     private void Awake()
     {
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
