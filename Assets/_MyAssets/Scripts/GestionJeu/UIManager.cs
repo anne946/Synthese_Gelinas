@@ -28,6 +28,19 @@ public class UIManager : MonoBehaviour  {
         UpdateTime();
     }
 
+    public void Update()
+    {
+        if((Input.GetKeyDown(KeyCode.Escape)) && !_pauseOn)  {
+            _pausePanel.SetActive(true);
+            Time.timeScale = 0;
+            _pauseOn = true;
+        }
+        else if ((Input.GetKeyDown(KeyCode.Escape)) && _pauseOn) {
+            _pausePanel.SetActive(false);
+            Time.timeScale = 1;
+            _pauseOn = false;
+        }
+    }
     public void AjouterScore(int points) 
     {
         _score += points;
