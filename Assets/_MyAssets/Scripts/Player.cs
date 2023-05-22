@@ -79,10 +79,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Fireball")
+        {
+            Damage();
+        }
+    }
+
     public void Damage()
     {
         _viesJoueur--;
-        _uimanager.EnleverVie();
         UIManager uiManager = FindObjectOfType<UIManager>();
 
         if (_viesJoueur < 1)
