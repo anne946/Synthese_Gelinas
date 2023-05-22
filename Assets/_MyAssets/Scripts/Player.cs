@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,17 +12,22 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject _BulletPrefab = default;
     [SerializeField] private GameObject _BallLighteningPrefab = default;
     [SerializeField] private GameObject _explosionPrefab = default;
-    
+    private SpawnManager _spawnManager;
+    private UIManager _uiManager;
+    private Animator _anim;
     private float _canFire = -1f;
     private float _cadenceInitiale;
-    private Animator _anim;
-    private GestionScene _gestionscene;
-    private UIManager _uimanager;
+    
+    private void Awake()
+    {
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        _uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+        _anim = GetComponent<Animator>();
+    }
 
     void Start()
     {
         _cadenceInitiale = _fireRate;
-        _anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -90,15 +96,13 @@ public class Player : MonoBehaviour
     public void Damage()
     {
         _viesJoueur--;
-        UIManager uiManager = FindObjectOfType<UIManager>();
+        _uiManager.ChangeLivesDisplayImage(_viesJoueur);
 
-        if (_viesJoueur < 1)
+        if (_viesJoueur <1)
         {
-            SpawnManager spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-            spawnManager.FinJeu();
+            _spawnManager.FinJeu();
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            _gestionscene.ChangerSceneSuivante();
         }
     }
 }
