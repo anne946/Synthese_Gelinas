@@ -7,7 +7,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour  {
     
-    [SerializeField] private int _score = default;
+    [SerializeField] public int _score = default;
     [SerializeField] private TextMeshProUGUI _txtScore = default;
     [SerializeField] private GameObject _pausePanel = default;
     [SerializeField] private Image _livesDisplayImage = default;
@@ -36,6 +36,11 @@ public class UIManager : MonoBehaviour  {
             Time.timeScale = 1;
             _pauseOn = false;
         }
+    }
+
+    public int GetStore()
+    {
+        return _score;
     }
     
     public void AjouterScore(int points) 
