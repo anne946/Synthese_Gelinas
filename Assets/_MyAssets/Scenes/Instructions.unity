@@ -362,7 +362,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Pressez f4 pour mettre en sourdine la trame sonore\n\nPressez la touche
-    ctrl droite pour lancer des balles foudroyantes\n\npressez la touche espace pour
+    ctrl gauche pour lancer des balles foudroyantes\n\npressez la touche espace pour
     lancer des balles de fusil\n\nUtilisez les fl\xE8ches pour faire d\xE9placer
     le joueur"
   m_isRightToLeft: 0

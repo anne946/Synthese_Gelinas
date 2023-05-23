@@ -37,11 +37,6 @@ public class UIManager : MonoBehaviour  {
             _pauseOn = false;
         }
     }
-
-    public int GetStore()
-    {
-        return _score;
-    }
     
     public void AjouterScore(int points) 
     {

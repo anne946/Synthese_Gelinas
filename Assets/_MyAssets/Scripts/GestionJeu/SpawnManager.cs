@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
                 newEnemy.transform.parent = _enemyContainer.transform;
                 yield return new WaitForSeconds(5f);
             }
-            else
+            else if (_uiManager._score > 1000)
             {
                 GameObject newEnemy = Instantiate(_prefabEnemy, poSpawn, Quaternion.identity);
                 newEnemy.transform.parent = _enemyContainer.transform;
